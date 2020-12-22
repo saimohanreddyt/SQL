@@ -1,0 +1,13 @@
+
+
+INT			- - Whole Numbers
+
+DECIMAL(M, N)		- - Decimal Numbers - Exact Values
+
+VARCHAR(1)		- - String of text of length 1
+
+BLOB			- - Binary large Object, stores large data
+
+DATE			- - 'YYY-MM-DD'
+
+TIMESTAMP		- - 'YYY-MM-DD HH:MM:SS' - used for recording

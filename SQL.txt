@@ -1,0 +1,24 @@
+Structured Query Language (SQL) is the standard and most widely used programming language for 
+relational databases. It is used to manage and organize data in all sorts of systems in which 
+various data relationships exist.
+
+Relational Databases (SQL)
+--------------------------
+> Relational Database Management Systems (RDBMS)
+ . Help users create and maintain a relational database
+   - mySQL, Oracle, postgreSQL, mariaDB, etc.
+>Structured Query Lnguage (SQL)
+ . Standardized language for interacting with RDBMS
+ . Used to perform C.R.U.D operations, as well as other administrative tasks (user management, security, backup, etc).
+ . Used to define tables am=nd structures
+ . SQL code used on one RDBMS is not always portable to another without modification.
+
+
+Non-Relational Databases (noSQL / not just SQL)
+------------------------------------------------
+> Non-Relational Databse Management System (NRDBMS)
+ . Help users create and maintain a non-relational databse
+  - mongoDB, dynamoDB, apache cassandra, firebase, etc
+> Implementation Specific
+ . Any non-relational database falls under this category, so there's no set languages standard.
+ . Most NRDBMS will implement their own languages for performing C.R.U.D and administrative operations on the database.
