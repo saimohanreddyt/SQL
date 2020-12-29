@@ -1,0 +1,769 @@
+
+MySQL Features
+MySQL Data Types
+MySQL Variables
+Install MySQL
+MySQL Connection
+MySQL Workbench
+	MySQL Workbench
+User Management
+	MySQL Create User
+	MySQL Drop User
+	MySQL Show Users
+	Change User Password
+MySQL Database
+	MySQL Create Database
+	---------------------
+		CREATE DATABASE database_name;	
+	MySQL Select Database
+	---------------------
+		USE database_name; 
+	MySQL Show Databases
+	--------------------
+		USE database_name; 
+	MySQL Drop Database
+	-------------------
+		DROP DATABASE database_name;
+	MySQL Copy Database
+	-------------------
+		
+
+Table & Views
+	MySQL CREATE Table
+	------------------
+		CREATE TABLE employee_table(  
+		id int NOT NULL AUTO_INCREMENT,  
+		name varchar(45) NOT NULL,  
+		occupation varchar(35) NOT NULL,  
+		age int NOT NULL,  
+		PRIMARY KEY (id)  
+	); 
+
+	MySQL ALTER Table
+	-----------------
+		ALTER TABLE cus_tbl  
+		ADD cus_address varchar(100) NOT NULL  
+		AFTER cus_surname,  
+		ADD cus_salary int(100) NOT NULL  
+		AFTER cus_age ;
+
+	MySQL Show Tables
+	-----------------
+		SHOW TABLES;
+
+	MySQL Rename Table
+	------------------
+		RENAME employee TO customer; 
+	MySQL TRUNCATE Table
+	--------------------
+		TRUNCATE TABLE  table_name;
+	MySQL Describe Table
+	-------------------
+		DESCRIBE customer;
+	MySQL DROP Table
+	----------------
+		DROP TABLE  table_name; 
+	MySQL Temporary Table
+	---------------------
+		CREATE TEMPORARY TABLE Students( student_name VARCHAR(40) NOT NULL, 
+		total_marks DECIMAL(12,2) NOT NULL DEFAULT 0.00, 
+		total_subjects INT UNSIGNED NOT NULL DEFAULT 0);
+	MySQL Copy Table
+	----------------
+		MySQL copy or clone table is a feature that allows us to create a duplicate table of an existing table, including the table structure, indexes, constraints, default values, etc. Copying data of an existing table into a new table is very useful in a situation like backing up data in table failure. It is also advantageous when we need to test or perform something without affecting the original table, for example, replicating the production data for testing.
+	MySQL Repair Table
+	------------------
+		REPAIR TABLE vehicle;
+	MySQL Add/Delete Column
+	-----------------------
+	ADD:	ALTER TABLE Test   
+		ADD COLUMN Phone_number VARCHAR(20) NOT NULL AFTER Name; 
+	DELETE: ALTER TABLE Test  
+		DROP COLUMN Mobile_number,  
+		DROP COLUMN Email; 
+
+	MySQL Show Columns
+	------------------
+		SHOW COLUMNS FROM mytable_name FROM mydb_name;  
+		OR,  
+		SHOW COLUMNS FROM mydb_name.mytable_name; 
+	MySQL Views
+	-----------
+		SELECT * FROM view_name; 
+	MySQL Table Locking
+	-------------------
+		LOCK TABLE info_table READ; 
+	MySQL Account Lock
+		ALTER USER markus@localhost ACCOUNT LOCK; 
+	MySQL Account Unlock
+		ALTER USER 'javatpoint'@'localhost' ACCOUNT UNLOCK; 
+MySQL Queries
+	MySQL Queries
+create database db1; 
+use db1;
+CREATE TABLE customers    
+(id int(10),    
+ name varchar(50),    
+ city varchar(50),  
+ PRIMARY KEY (id )    
+);
+ALTER TABLE customers   
+ADD age varchar(50);    
+insert into customers values(101,'rahul','delhi'); 
+
+
+	MySQL Constraints
+		CREATE TABLE customers    
+		(id int(10),    
+		name varchar(50),    
+		city varchar(50),  
+		PRIMARY KEY (id )    
+		);  
+	MySQL INSERT Record
+		insert into customers values(101,'rahul','delhi'); 
+	MySQL UPDATE Record
+		update customers set name='bob', city='london' where id=101;  
+	MySQL DELETE Record
+		delete from customers where id=101;
+	MySQL SELECT Record
+		SELECT * from customers;  
+	MySQL Replace
+		REPLACE INTO Person (id, city)  
+		VALUES(4,'Amsterdam');
+	MySQL Truncate Table Query
+		truncate table customers;
+	MySQL Drop Query
+		drop table customers;
+	Insert On Duplicate Key Update
+		INSERT IGNORE INTO Test(Name) VALUES ('Stephen'); 
+	MySQL INSERT IGNORE
+		INSERT INTO Test(Name) VALUES ('Stephen');
+MySQL Indexes
+CREATE TABLE t_index(  
+   col1 INT PRIMARY KEY,  
+   col2 INT NOT NULL,  
+   col3 INT NOT NULL,  
+   col4 VARCHAR(20),  
+   INDEX (col2,col3)   
+);
+	MySQL Create Index
+		CREATE INDEX [index_name] ON [table_name] (column names)
+	MySQL Drop Index
+		DROP INDEX index_name ON table_name [algorithm_option | lock_option]; 
+	MySQL Show Indexes
+		SHOW INDEXES FROM table_name; 
+	MySQL Unique Index
+		CREATE TABLE Employee_Detail(    
+		ID int AUTO_INCREMENT PRIMARY KEY,     
+		Name varchar(45),     
+		Email varchar(45),    
+		Phone varchar(15),     
+		City varchar(25),  
+		UNIQUE KEY unique_email (Email)  
+		); 
+	MySQL Clustered Index
+		CREATE TABLE `student_info` (  
+		`studentid` int NOT NULL AUTO_INCREMENT,  
+		`name` varchar(45) DEFAULT NULL,  
+		`age` varchar(3) DEFAULT NULL,  
+		`mobile` varchar(20) DEFAULT NULL,  
+		`email` varchar(25) DEFAULT NULL,  
+		PRIMARY KEY (`studentid`), //clustered index  
+		UNIQUE KEY `email_UNIQUE` (`email`)  
+		) 
+	MySQL Clustered vs Non-Clustered Index
+		CREATE TABLE Student  
+		( post_id INT NOT NULL AUTO_INCREMENT, user_id INT NOT NULL,  
+		CONSTRAINT Post_PK  
+		PRIMARY KEY (user_id, post_id),    //clustered index  
+		CONSTRAINT post_id_UQ  
+		UNIQUE (post_id)               
+		)
+MySQL Clauses
+	MySQL WHERE
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Mau'; 
+	
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Lucknow'  
+		AND officer_id < 5;
+	
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Lucknow'  
+		AND officer_id < 5;
+	MySQL DISTINCT
+		SELECT DISTINCT address  
+		FROM officers;	
+	
+		SELECT DISTINCT officer_name, address  
+		FROM officers;
+	MySQL FROM
+		SELECT *  
+		FROM officers  
+		WHERE officer_id <= 3;
+
+		SELECT officers.officer_id, students.student_name  
+		FROM students  
+		INNER JOIN officers  
+		ON students.student_id = officers.officer_id; 
+	MySQL ORDER BY
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Lucknow'  
+		ORDER BY officer_name; 
+
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Lucknow'  
+		ORDER BY officer_name ASC; 
+
+		SELECT *  
+		FROM officers  
+		WHERE address = 'Lucknow'  
+		ORDER BY officer_name DESC; 
+		
+		SELECT officer_name, address  
+		FROM officers  
+		WHERE officer_id < 5  
+		ORDER BY officer_name DESC, address ASC; 
+	MySQL GROUP BY
+		SELECT address, COUNT(*)  
+		FROM   officers   
+		GROUP BY address;  
+	
+		SELECT emp_name, SUM(working_hours) AS "Total working hours"  
+		FROM employees  
+		GROUP BY emp_name; 
+
+		SELECT emp_name, MIN(working_hours) AS "Minimum working hour"  
+		FROM employees  
+		GROUP BY emp_name; 
+
+		SELECT emp_name, MAX (working_hours) AS "Minimum working hour"  
+		FROM employees  
+		GROUP BY emp_name; 
+
+		SELECT emp_name, AVG(working_hours) AS "Average working hour"  
+		FROM employees  
+		GROUP BY emp_name; 
+
+	MySQL HAVING
+		SELECT emp_name, SUM(working_hours) AS "Total working hours"  
+		FROM employees  
+		GROUP BY emp_name  
+		HAVING SUM(working_hours) > 5; 
+MySQL Privileges
+-x-x-x-x-x-x-x-x
+	MySQL Grant Privilege
+		GRANT ALL ON mystudentdb.* TO john@localhost; 
+
+		GRANT EXECUTE ON FUNCTION calculatesalary TO john@localhost;
+
+		GRANT EXECUTE ON FUNCTION calculatesalary TO *@localhost; 
+	MySQL Revoke Privilege
+		REVOKE ALL, GRANT OPTION FROM john@localhost;
+
+		REVOKE UPDATE, INSERT ON mystudentdb.* FROM john@localhost
+
+		REVOKE PROXY ON 'peter@javatpoint' FROM 'john'@'localhost'; 
+Control Flow Function
+	MySQL IF()
+		SELECT lastname,  
+		IF(age>20,"Mature","Immature")    
+		As Result  
+		FROM student;
+
+	MySQL IFNULL()
+		SELECT   
+		    contactname, IFNULL(cellphone, homephone) phone  
+		FROM  
+		    student_contact; 
+	MySQL NULLIF()
+		SELECT cust_name, occupation, qualification,   
+		NULLIF (qualification,"Btech") result   
+		FROM myproductdb.customer; 
+	MySQL CASE
+		SELECT studentid, firstname,  
+		 CASE class   
+		    WHEN 'CS' THEN 'Computer Science'   
+		    WHEN 'EC' THEN 'Electronics and Communication'   
+		    ELSE 'Electrical Engineering'   
+		END AS department from students; 
+	MySQL IF Statement
+		IF condition THEN   
+		   statements;  
+		END IF;		
+
+		IF condition THEN  
+		   statements;  
+		ELSE  
+		   else-statements;  
+		END IF; 
+
+		IF condition THEN  
+		   statements;  
+		ELSEIF elseif-condition THEN  
+		   elseif-statements;  
+		...  
+		ELSE  
+		   else-statements;  
+		END IF; 
+
+
+MySQL Conditions
+	MySQL AND
+		SELECT *  
+		FROM cus_tbl  
+		WHERE cus_firstname = 'Ajeet'  
+		AND cus_id > 3;
+
+	MySQL OR
+		SELECT *  
+		FROM cus_tbl  
+		WHERE cus_firstname = 'Ajeet'  
+		OR cus_id > 100; 
+
+	MySQL AND OR
+		SELECT *  
+		FROM students  
+		WHERE (course_name = 'Java' AND student_name = 'Aryan')  
+		OR (student_id < 2);  
+	MySQL Boolean
+		SELECT studentid, name, pass FROM student1 WHERE pass IS FALSE;  
+  
+		OR,  
+  
+		SELECT studentid, name, pass FROM student1 WHERE pass IS NOT TRUE; 
+	MySQL LIKE
+		SELECT officer_name  
+		FROM officers  
+		WHERE address LIKE 'Luck%'; 
+
+		SELECT officer_name  
+		FROM officers  
+		WHERE address LIKE 'Luc_now'; 
+
+		SELECT officer_name  
+		FROM officers  
+		WHERE address NOT LIKE 'Luck%';
+	MySQL IN
+		SELECT *  
+		FROM officers  
+		WHERE officer_name IN ('Ajeet', 'Vimal', 'Deepika');
+	MySQL Exists
+		SELECT name, occupation FROM customer  
+		WHERE EXISTS (SELECT * FROM Orders   
+		WHERE customer.cust_id = Orders.cust_id);
+
+		SELECT name, occupation FROM customer  
+		WHERE NOT EXISTS (SELECT * FROM Orders   
+		WHERE customer.cust_id = Orders.cust_id); 
+
+		DELETE FROM Orders WHERE EXISTS (  
+		SELECT * FROM customer   
+		WHERE order_id=3);
+
+		SELECT EXISTS(SELECT * from customer WHERE cust_id=104) AS Result;
+	MySQL NOT
+		SELECT *  
+		FROM officers  
+		WHERE officer_name NOT IN ('Ajeet','Vimal','Deepika');
+
+		SELECT *  
+		FROM officers  
+		WHERE officer_name IS NOT NULL;
+
+		SELECT *  
+		FROM officers  
+		WHERE officer_name NOT LIKE 'A%'; 
+
+		SELECT *  
+		FROM officers  
+		WHERE officer_id NOT BETWEEN 3 AND 5; 
+	MySQL Not Equal
+		SELECT * FROM students WHERE city <> "England";
+
+		SELECT * FROM students WHERE city != "England"; 
+
+		SELECT * FROM customers  
+		JOIN contacts ON customer_id = contact_id   
+		WHERE cellphone <> "Null"  
+		GROUP BY income; 
+
+		SELECT * FROM customers  
+		JOIN contacts ON customer_id = contact_id   
+		WHERE cellphone != "Null;
+
+		SELECT * FROM customers Where income>40000 and occupation<>"Developer";
+	MySQL IS NULL
+		SELECT *  
+		FROM officers  
+		WHERE officer_name IS NULL; 
+
+	MySQL IS NOT NULL
+		SELECT *  
+		FROM officers  
+		WHERE officer_name IS NOT NULL; 
+
+	MySQL BETWEEN
+		SELECT *  
+		FROM officers  
+		WHERE officer_id BETWEEN 1 AND 3;
+
+		SELECT *  
+		FROM employees  
+		WHERE working_date BETWEEN CAST ('2015-01-24' AS DATE) AND CAST ('2015-01-25' AS DATE);
+MySQL Join
+-X-X-X-X-X-X-
+	MySQL Inner  Join
+		SELECT students.stud_fname, students.stud_lname, students.city, technologies.technology    
+		FROM students   
+		INNER JOIN technologies    
+		ON students.student_id = technologies.tech_id; 
+
+		SELECT students.student_id, technologies.inst_name, students.city, technologies.technology    
+		FROM students   
+		INNER JOIN technologies    
+		ON students.student_id = technologies.tech_id GROUP BY inst_name;
+
+		SELECT student_id, inst_name, city, technology    
+		FROM students   
+		INNER JOIN technologies    
+		USING (student_id); 
+
+		SELECT tech_id, inst_name, city, technology    
+		FROM students   
+		INNER JOIN technologies    
+		USING (student_id) WHERE technology = "Java";
+
+		SELECT student_id, inst_name, city, technology, cellphone  
+		FROM students   
+		INNER JOIN technologies USING (student_id)  
+		INNER JOIN contact ORDER BY student_id;
+
+		SELECT emp_id, designation, income, qualification  
+		FROM employee  
+		INNER JOIN customer  
+		WHERE income>20000 and  income<80000;
+	
+	MySQL Left Join
+		SELECT columns    
+		FROM table1    
+		LEFT [OUTER] JOIN table2    
+		ON Join_Condition;
+
+		SELECT customers.customer_id, cust_name, price, date  
+		FROM customers  
+		LEFT JOIN orders ON customers.customer_id = orders.customer_id;
+
+		SELECT customer_id, cust_name, occupation, price, date  
+		FROM customers  
+		LEFT JOIN orders USING(customer_id); 
+
+	MySQL LEFT JOIN Multiple Tables
+		SELECT customers.customer_id, cust_name, order_id, price, cellphone  
+		FROM customers  
+		LEFT JOIN contacts ON customer_id = contact_id  
+		LEFT JOIN orders ON customers.customer_id = orders.customer_id ORDER BY income; 
+	MySQL Right Join
+		SELECT customers.customer_id, cust_name, price, date  
+		FROM customers  
+		RIGHT JOIN orders ON customers.customer_id = orders.customer_id  
+		ORDER BY  customer_id;  
+		OR,
+		SELECT customers.customer_id, cust_name, price, date  
+		FROM customers  
+		RIGHT JOIN orders USING(customer_id)  
+		ORDER BY  customer_id;
+
+		SELECT * FROM customers  
+		RIGHT JOIN orders USING(customer_id)  
+		WHERE price>2500 AND price<5000; 
+
+	MySQL RIGHT JOIN Multiple Tables
+		SELECT customers.customer_id, cust_name, order_id, price, cellphone  
+		FROM customers  
+		RIGHT JOIN contacts ON customer_id = contact_id  
+		RIGHT JOIN orders ON customers.customer_id = orders.customer_id ORDER BY order_id;
+	MySQL CROSS JOIN
+		SELECT column-lists  
+		FROM table1  
+		CROSS JOIN table2; 
+
+		SELECT *  
+		FROM customers  
+		CROSS JOIN contacts; 
+
+		SELECT customer_id, cust_name, income, order_id, price  
+		FROM customer  
+		CROSS JOIN orders;  
+	MySQL CROSS JOIN Multiple Tables
+		SELECT * FROM customer  
+		LEFT JOIN(orders CROSS JOIN contacts)  
+		ON customer.customer_id=contact_id  
+		ORDER BY income; 
+	MySQL SELF JOIN
+		SELECT  s1.student_id, s1.name  
+		FROM student AS s1, student s2  
+		WHERE s1.student_id=s2.student_id  
+		AND s1.course_id<>s2.course_id;
+
+		SELECT  s1.student_id, s1.name  
+		FROM student s1  
+		INNER JOIN student s2  
+		ON s1.student_id=s2.student_id  
+		AND s1.course_id<>s2.course_id  
+		GROUP BY student_id; 
+
+		SELECT (CONCAT(s1.stud_lname, ' ', s2.stud_fname)) AS 'Monitor', s1.city  
+		FROM students s1  
+		LEFT JOIN students s2 ON s1.student_id=s2.student_id  
+		ORDER BY s1.city DESC; 
+	MySQL DELETE JOIN
+		DELETE T1, T2    
+		FROM    T1    
+		INNER JOIN T2    
+		ON T1.student_id=T2.student.id    
+		WHERE   T1.student_id=2; 
+
+		DELETE students, contacts FROM students  
+		INNER JOIN contacts ON students.student_id=contacts.college_id   
+		WHERE students.student_id = 4;
+
+		DELETE customers FROM customers  
+		LEFT JOIN contacts ON customers.customer_id = contacts.contact_id   
+		WHERE cellphone IS NULL; 
+	MySQL Update Join
+		UPDATE Tab1, Tab2,   
+		SET Tab1.C2 = Tab2.C2, Tab2.C3 = expression   
+		WHERE Tab1.C1 = Tab2.C1 AND condition;
+
+		UPDATE Employees e  
+		INNER JOIN Performance p   
+		ON e.performance = p.performance  
+		SET salary = salary + salary * percentage;
+	Left Join vs Right Join
+Syntax of LEFT JOIN Clause
+
+The following is the general syntax of LEFT JOIN:
+
+    SELECT column_list  FROM table_name1   
+    LEFT JOIN table_name2   
+    ON column_name1 = column_name2  
+    WHERE join_condition  
+
+The following is the general syntax of LEFT OUTER JOIN:
+
+    SELECT column_list  FROM table_name1   
+    LEFT OUTER JOIN table_name2   
+    ON column_name1 = column_name2  
+    WHERE join_condition  
+
+Syntax of RIGHT JOIN Clause
+
+The following is the general syntax of RIGHT JOIN:
+
+    SELECT column_list  FROM table_name1   
+    RIGHT JOIN table_name2   
+    ON column_name1 = column_name2  
+    WHERE join_condition  
+
+The following is the general syntax of RIGHT OUTER JOIN:
+
+    SELECT column_list  FROM table_name1   
+    RIGHT OUTER JOIN table_name2   
+    ON column_name1 = column_name2  
+    WHERE join_condition  
+
+	MySQL Union vs Join
+		SELECT students.stud_fname, students.stud_lname, students.city, technologies.technology      
+		FROM students     
+		JOIN technologies      
+		ON students.student_id = technologies.tech_id; 
+
+MySQL Key
+	MySQL Unique Key
+		CREATE TABLE Student2 (  
+		    Stud_ID int NOT NULL UNIQUE,   
+		    Name varchar(45),   
+		    Email varchar(45),  
+		    Age int,   
+		    City varchar(25)  
+		);
+
+		INSERT INTO Student2 (Stud_ID, Name, Email, Age, City)  
+		VALUES (1, 'Peter', 'peter@javatpoint.com', 22, 'Texas'),  
+		(2, 'Suzi', 'suzi@javatpoint.com', 24, 'California'),  
+		(3, 'Joseph', 'joseph@javatpoint.com', 23, 'Alaska');  
+  
+		INSERT INTO Student2 (Stud_ID, Name, Email, Age, City)  
+		VALUES (1, 'Stephen', 'stephen@javatpoint.com', 22, 'Texas'); 
+
+
+	MySQL Primary Key
+		Mysql> CREATE TABLE Login(  
+		   login_id INT AUTO_INCREMENT PRIMARY KEY,  
+		   username VARCHAR(40),  
+		   password VARCHAR(55),  
+		   email VARCHAR(55)  
+		);
+		
+		INSERT INTO Login(login_id, username, password, email)   
+		VALUES (1,'Stephen', 15343434532, 'stephen@javatpoint.com'),   
+		(2, 'Joseph', 35435479495, 'Joseph@javatpoint.com');  
+  
+		INSERT INTO Login(login_id, username, password, email)   
+		VALUES (1,'Peter', 15343434532, 'peter@javatpoint.com');
+	MySQL Foreign Key
+	-----------------
+		The foreign key is used to link one or more than one table together. It is also known as the referencing key. A foreign key matches the primary key field of another table. It means a foreign key field in one table refers to the primary key field of the other table. It identifies each row of another table uniquely that maintains the referential integrity in MySQL.
+		    CREATE TABLE contact (  
+		      ID INT,  
+		      Customer_Id INT,  
+		      Customer_Info varchar(50) NOT NULL,  
+		      Type varchar(50) NOT NULL,  
+		      INDEX par_ind (Customer_Id),  
+		      CONSTRAINT fk_customer FOREIGN KEY (Customer_Id)  
+		      REFERENCES customer(ID)  
+		      ON DELETE CASCADE  
+		      ON UPDATE CASCADE  
+		    );  
+	MySQL Composite Key
+
+MySQL Triggers
+	MySQL Trigger
+
+	MySQL Create Trigger
+
+	MySQL Show Trigger
+
+	MySQL DROP Trigger
+
+	Before Insert Trigger
+
+	After Insert Trigger
+
+	MySQL BEFORE UPDATE Trigger
+
+	MySQL AFTER UPDATE Trigger
+
+	MySQL BEFORE DELETE Trigger
+
+	MySQL AFTER DELETE Trigger
+
+Aggregate Functions
+	MySQL Aggregate Functions
+
+	MySQL count()
+
+	MySQL sum()
+
+	MySQL avg()
+
+	MySQL min()
+
+	MySQL max()
+
+	MySQL GROUP_CONCAT()
+
+	MySQL first()
+
+	MySQL last()
+
+MySQL Misc
+-x-x-x-x-x-
+MySQL Comments
+Export & Import Database
+Import CSV File in Database
+Export Table to CSV
+MySQL Subquery
+MySQL Derived Table
+MySQL UUID
+LEAD And LAG Function
+MySQL CTE
+MySQL On Delete Cascade
+MySQL UPSERT
+MySQL Commands Cheat-Sheet
+MySQL Transaction
+MySQL Partitioning
+MySQL ROW_NUMBER()
+MySQL Cursor
+MySQL Limit
+MySQL Stored Function
+Number Format Function
+MySQL Ranking Functions
+MySQL Window Functions
+MySQL Union
+Union vs Union All
+MySQL VARCHAR
+MySQL ENUM
+MySQL SET
+MySQL DECIMAL
+MySQL CAST
+MySQL Convert()
+MySQL COALESCE()
+MySQL Wildcards
+MySQL Alias
+MySQL Functions
+MySQL ROLLUP
+MySQL INT
+MySQL Today
+MySQL ROW COUNT
+Prepared Statement
+MySQL Literals(Constants)
+MySQL Date & Time
+MySQL Procedure
+MySQL Minus
+MySQL Intersect
+MySQL Storage Engines
+MySQL Explain
+MySQL Sequence
+MySQL JSON
+MySQL Standard Deviation
+How to select nth Highest Record
+Find Duplicate Records
+Delete Duplicate Records
+MySQL Extract
+MySQL ProcessList
+MySQL BIT
+Change Column Type
+MySQL Reset Auto-Increment
+MySQL Interval
+Login with Different User
+
+MySQL Globalisation
+	MySQL Character Set
+
+	MySQL Collation
+
+MySQL Regex
+	Not Like Operator
+
+	Not regexp Operator
+
+	regexp Operator
+
+	regexp_instr() Function
+
+	regexp_like() Function
+
+	regexp_replace() Function
+
+	regexp_substr() Function
+
+Differences
+	MySQL vs MongoDB
+
+	MySQL vs MS SQL Server
+
+	MySQL vs Oracle
+
+	MariaDB vs MySQL
+
+	PostgreSQL vs MySQL
+
+	MySQL vs SQL
+
